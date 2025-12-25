@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Appointments</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="header">
+  <h2>Appointments</h2>
+</div>
+
+<div class="main-content">
+
+  <button id="backBtn" class="btn-primary">← Back to Calendar</button>
+
+  <!-- FILTER BAR -->
+  <div class="filter-bar" style="margin:15px 0; display:flex; gap:10px; align-items:center; flex-wrap:wrap;">
+
+    <div style="position:relative; width:160px;">
+      <input type="text" id="filterPatient" placeholder="Patient Name"
+        style="width:100%; padding:6px 28px 6px 10px;">
+      <span style="position:absolute; right:8px; top:50%; transform:translateY(-50%);">🔍</span>
+    </div>
+
+    <div style="position:relative; width:160px;">
+      <input type="text" id="filterDoctor" placeholder="Doctor Name"
+        style="width:100%; padding:6px 28px 6px 10px;">
+      <span style="position:absolute; right:8px; top:50%; transform:translateY(-50%);">🔍</span>
+    </div>
+
+    <div style="position:relative; width:160px;">
+      <input type="date" id="filterDate"
+        style="width:100%; padding:6px 28px 6px 10px;">
+      <span style="position:absolute; right:8px; top:50%; transform:translateY(-50%);">📅</span>
+    </div>
+
+    <button id="updateBtn" class="btn-primary">Update</button>
+  </div>
+
+  <!-- ✅ REQUIRED HEADING -->
+  <h3 id="selectedDateHeading">All Appointments</h3>
+
+  <table class="appointment-table">
+    <thead>
+      <tr>
+        <th>Patient</th>
+        <th>Doctor</th>
+        <th>Hospital</th>
+        <th>Specialty</th>
+        <th>Date</th>
+        <th>Time</th>
+        <th>Reason</th>
+      </tr>
+    </thead>
+    <tbody id="appointmentsBody"></tbody>
+  </table>
+
+</div>
+
+<script src="appointment.js"></script>
+</body>
+</html>

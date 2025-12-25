@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Appointment Scheduler</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<header class="header">
+  <div class="menu" id="menuBtn">&#9776;</div>
+  <h1>Development Task</h1>
+</header>
+
+<div class="layout">
+  <aside class="sidebar" id="sidebar">
+    <div class="logo">CAPMINDS</div>
+    <div class="nav-item active">📅 Calendar</div>
+    <div class="nav-item">📊 Dashboard</div>
+  </aside>
+
+  <main class="main-content" id="mainContent">
+    <div class="top-bar">
+      <button class="btn-primary" id="openModalBtn">+ Book Appointment</button>
+    </div>
+
+    <section class="calendar-box">
+      <div class="calendar-controls">
+        <div></div>
+        <div class="right-controls">
+          <button id="prevMonth" class="icon-btn">&#8249;</button>
+          <div class="date-box">
+            <span id="monthYear"></span>
+          </div>
+          <button id="nextMonth" class="icon-btn">&#8250;</button>
+          <button id="todayBtn" class="control-btn">Today</button>
+        </div>
+      </div>
+
+      <div class="calendar-grid" id="calendarGrid"></div>
+    </section>
+  </main>
+</div>
+
+<!-- MODAL -->
+<div id="appointmentModal" class="modal">
+  <div class="modal-content">
+    <span class="close" id="closeModalBtn">&times;</span>
+    <h2>Schedule Appointment</h2>
+
+    <form id="appointmentForm">
+      <label>Patient Name</label>
+      <input type="text" id="patientName" required />
+
+      <label>Doctor Name</label>
+      <input type="text" id="doctorName" required />
+
+      <label>Hospital Name</label>
+      <input type="text" id="hospitalName" required />
+
+      <label>Specialty</label>
+      <input type="text" id="specialty" required />
+
+      <label>Date</label>
+      <input type="date" id="appointmentDate" required />
+
+      <label>Time</label>
+      <input type="time" id="appointmentTime" required />
+
+      <label>Reason</label>
+      <textarea id="reason" rows="3" required></textarea>
+
+      <button type="submit" class="btn-primary">Save Appointment</button>
+    </form>
+  </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
