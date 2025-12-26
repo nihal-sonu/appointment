@@ -345,3 +345,53 @@ body {
         min-width: 500px;
     }
 }
+/* ================================
+   MOBILE CALENDAR UX FIX (FINAL)
+   ================================ */
+@media (max-width: 768px) {
+
+    /* Prevent huge empty calendar cells */
+    .calendar-grid {
+        grid-template-columns: repeat(7, minmax(42px, 1fr));
+        max-height: 70vh;          /* calendar fits screen */
+        overflow-y: auto;          /* vertical scroll */
+        overflow-x: hidden;        /* no sideways blank */
+    }
+
+    /* Smaller weekday headers */
+    .day {
+        font-size: 11px;
+        padding: 6px 0;
+    }
+
+    /* Compact date cells */
+    .date-cell {
+        min-height: 60px;          /* 🔥 KEY FIX */
+        padding: 4px;
+        font-size: 11px;
+    }
+
+    .date-number {
+        font-size: 11px;
+        margin-bottom: 2px;
+    }
+
+    /* Smaller appointment tags */
+    .appointment-tag {
+        font-size: 9px;
+        padding: 2px 4px;
+        border-radius: 2px;
+    }
+}
+
+/* EXTRA SMALL PHONES */
+@media (max-width: 480px) {
+
+    .calendar-grid {
+        max-height: 65vh;
+    }
+
+    .date-cell {
+        min-height: 55px;
+    }
+}
