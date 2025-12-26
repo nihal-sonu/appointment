@@ -1,4 +1,6 @@
-/* GLOBAL STYLES */
+/* ================================
+   GLOBAL STYLES
+   ================================ */
 * {
     margin: 0;
     padding: 0;
@@ -11,7 +13,9 @@ body {
     color: #333;
 }
 
-/* HEADER */
+/* ================================
+   HEADER
+   ================================ */
 .header {
     background: #2f2f2f;
     color: white;
@@ -28,13 +32,17 @@ body {
     display: none;
 }
 
-/* LAYOUT */
+/* ================================
+   LAYOUT
+   ================================ */
 .layout {
     display: flex;
     min-height: calc(100vh - 60px);
 }
 
-/* SIDEBAR */
+/* ================================
+   SIDEBAR
+   ================================ */
 .sidebar {
     width: 220px;
     background: #ffffff;
@@ -55,7 +63,6 @@ body {
     cursor: pointer;
     border-radius: 4px;
     margin-bottom: 5px;
-    transition: 0.2s;
 }
 
 .nav-item:hover {
@@ -68,7 +75,9 @@ body {
     font-weight: bold;
 }
 
-/* MAIN CONTENT */
+/* ================================
+   MAIN CONTENT
+   ================================ */
 .main-content {
     flex: 1;
     padding: 20px;
@@ -91,7 +100,9 @@ body {
     font-size: 14px;
 }
 
-/* CALENDAR BOX */
+/* ================================
+   CALENDAR
+   ================================ */
 .calendar-box {
     background: white;
     padding: 20px;
@@ -112,7 +123,7 @@ body {
     flex-wrap: wrap;
 }
 
-/* CONTROLS */
+/* Controls */
 .icon-btn,
 .control-btn,
 .view-box,
@@ -126,16 +137,18 @@ body {
     min-height: 36px;
 }
 
-/* CALENDAR GRID */
+/* ================================
+   CALENDAR GRID
+   ================================ */
 .calendar-grid {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
     gap: 1px;
     background: #eee;
     border: 1px solid #eee;
-    overflow-x: auto;
 }
 
+/* Day headers */
 .day {
     background: #f9f9f9;
     font-weight: bold;
@@ -144,12 +157,12 @@ body {
     font-size: 13px;
 }
 
+/* Date cell */
 .date-cell {
     background: white;
     min-height: 110px;
     padding: 8px;
     font-size: 12px;
-    position: relative;
     cursor: pointer;
 }
 
@@ -162,7 +175,7 @@ body {
     margin-bottom: 5px;
 }
 
-/* APPOINTMENTS IN CALENDAR */
+/* Appointments */
 .appointments-container {
     display: flex;
     flex-direction: column;
@@ -175,33 +188,29 @@ body {
     padding: 3px 6px;
     border-radius: 3px;
     font-size: 10px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
 }
 
-/* MODAL */
+/* ================================
+   MODAL
+   ================================ */
 .modal {
     display: none;
     position: fixed;
+    inset: 0;
     z-index: 2000;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0,0,0,0.5);
-    overflow-y: auto; /* scroll if modal exceeds screen */
+    background: rgba(0,0,0,0.5);
+    overflow-y: auto;
 }
 
 .modal-content {
-    background-color: #fff;
+    background: white;
     margin: 5% auto;
     padding: 25px;
     border-radius: 8px;
     width: 450px;
     max-width: 90%;
-    max-height: 90vh; /* limit modal height */
-    overflow-y: auto; /* scroll inside modal */
+    max-height: 90vh;
+    overflow-y: auto;
 }
 
 .modal-content label {
@@ -220,7 +229,9 @@ body {
     border-radius: 4px;
 }
 
-/* APPOINTMENT TABLE */
+/* ================================
+   APPOINTMENT TABLE
+   ================================ */
 .appointment-table {
     width: 100%;
     border-collapse: collapse;
@@ -236,10 +247,8 @@ body {
 }
 
 /* ================================
-   RESPONSIVE
+   TABLET
    ================================ */
-
-/* TABLET */
 @media (max-width: 1024px) {
     .menu {
         display: block;
@@ -251,122 +260,32 @@ body {
         top: 60px;
         height: 100%;
         z-index: 1500;
-        box-shadow: 2px 0 10px rgba(0,0,0,0.1);
+        background: #fff;
     }
 
     .sidebar.open {
         left: 0;
     }
-
-    .modal-content {
-        width: 90%;
-        max-height: 90vh;
-        overflow-y: auto;
-    }
 }
 
-/* MOBILE */
-@media (max-width: 768px) {
-
-    .calendar-box {
-        padding: 12px;
-    }
-
-    .calendar-grid {
-        min-width: 600px; /* horizontal scroll for calendar */
-    }
-
-    .modal-content {
-        width: 95%;
-        max-height: 90vh;
-        overflow-y: auto;
-        margin: 5% auto;
-        padding: 20px;
-    }
-
-    /* Appointment table → card view */
-    .appointment-table,
-    thead,
-    tbody,
-    th,
-    td,
-    tr {
-        display: block;
-    }
-
-    thead tr {
-        position: absolute;
-        top: -9999px;
-    }
-
-    tr {
-        border: 1px solid #ccc;
-        margin-bottom: 15px;
-        border-radius: 8px;
-        padding: 10px;
-        background: #fff;
-    }
-
-    td {
-        border: none;
-        position: relative;
-        padding-left: 50%;
-        text-align: right;
-        border-bottom: 1px solid #eee;
-        padding-top: 10px;
-        padding-bottom: 10px;
-    }
-
-    td:last-child {
-        border-bottom: none;
-    }
-
-    td:before {
-        content: attr(data-label);
-        position: absolute;
-        left: 10px;
-        font-weight: bold;
-        text-align: left;
-        color: #2d7ff9;
-    }
-}
-
-/* EXTRA SMALL MOBILE */
-@media (max-width: 480px) {
-    .modal-content {
-        width: 95%;
-        margin: 5% auto;
-        max-height: 85vh;
-        overflow-y: auto;
-        padding: 15px;
-    }
-
-    .calendar-grid {
-        min-width: 500px;
-    }
-}
 /* ================================
-   MOBILE CALENDAR UX FIX (FINAL)
+   MOBILE (IMPORTANT FIX)
    ================================ */
 @media (max-width: 768px) {
 
-    /* Prevent huge empty calendar cells */
     .calendar-grid {
-        grid-template-columns: repeat(7, minmax(42px, 1fr));
-        max-height: 70vh;          /* calendar fits screen */
-        overflow-y: auto;          /* vertical scroll */
-        overflow-x: hidden;        /* no sideways blank */
+        grid-template-columns: repeat(7, 1fr);
+        max-height: 70vh;
+        overflow-y: auto;
     }
 
-    /* Smaller weekday headers */
     .day {
         font-size: 11px;
         padding: 6px 0;
     }
 
-    /* Compact date cells */
     .date-cell {
-        min-height: 60px;          /* 🔥 KEY FIX */
+        min-height: 55px;
         padding: 4px;
         font-size: 11px;
     }
@@ -376,22 +295,54 @@ body {
         margin-bottom: 2px;
     }
 
-    /* Smaller appointment tags */
     .appointment-tag {
         font-size: 9px;
         padding: 2px 4px;
-        border-radius: 2px;
+    }
+
+    /* Table → Card */
+    .appointment-table,
+    thead,
+    tbody,
+    th,
+    td,
+    tr {
+        display: block;
+    }
+
+    thead {
+        display: none;
+    }
+
+    tr {
+        background: #fff;
+        margin-bottom: 12px;
+        padding: 10px;
+        border-radius: 8px;
+        border: 1px solid #ddd;
+    }
+
+    td {
+        padding-left: 50%;
+        position: relative;
+        text-align: right;
+    }
+
+    td::before {
+        content: attr(data-label);
+        position: absolute;
+        left: 10px;
+        font-weight: bold;
+        color: #2d7ff9;
+        text-align: left;
     }
 }
 
-/* EXTRA SMALL PHONES */
+/* ================================
+   EXTRA SMALL MOBILE
+   ================================ */
 @media (max-width: 480px) {
-
-    .calendar-grid {
-        max-height: 65vh;
-    }
-
     .date-cell {
-        min-height: 55px;
+        min-height: 48px;
     }
 }
