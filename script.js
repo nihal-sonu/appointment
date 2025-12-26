@@ -67,10 +67,9 @@ function renderCalendar() {
       cell.classList.add("today-highlight");
     }
 
-    const formattedDate = `${year}-${String(month + 1).padStart(2, "0")}-${String(day).padStart(2, "0")}`;
+    const formattedDate = `${year}-${String(month + 1).padStart(2,"0")}-${String(day).padStart(2,"0")}`;
     cell.onclick = (e) => {
       if (e.target.classList.contains('date-cell') || e.target.classList.contains('date-number')) {
-        document.getElementById("appointmentDate").value = formattedDate;
         appointmentForm.reset();
         document.getElementById("appointmentDate").value = formattedDate;
         localStorage.removeItem("editAppointmentId");
@@ -146,7 +145,6 @@ function renderAppointmentsOnCalendar() {
       tag.className = "appointment-tag";
       tag.innerHTML = `<span>${app.time} ${app.patientName}</span>`;
 
-      // Edit Button
       const editBtn = document.createElement("button");
       editBtn.textContent = "✏️";
       editBtn.onclick = (e) => {
@@ -159,7 +157,6 @@ function renderAppointmentsOnCalendar() {
         modal.style.display = "block";
       };
 
-      // Delete Button
       const delBtn = document.createElement("button");
       delBtn.textContent = "🗑️";
       delBtn.onclick = (e) => {
@@ -179,30 +176,38 @@ function renderAppointmentsOnCalendar() {
 }
 
 // ====== DASHBOARD / APPOINTMENTS ======
+let dashboardLoaded = false;
+
 navItems[1].addEventListener("click", () => {
-    calendarSection.style.display = "none";
-    dashboardSection.style.display = "block";
-    navItems[1].classList.add("active");
-    navItems[0].classList.remove("active");
+  calendarSection.style.display = "none";
+  dashboardSection.style.display = "block";
+  navItems[1].classList.add("active");
+  navItems[0].classList.remove("active");
 
+  if (!dashboardLoaded) {
     fetch("appointment.html")
-        .then(res => res.text())
-        .then(html => {
-            dashboardSection.innerHTML = html;
+      .then(res => res.text())
+      .then(html => {
+        dashboardSection.innerHTML = html;
+        dashboardLoaded = true;
 
-            // Dynamically load appointment.js after HTML is injected
-            const script = document.createElement("script");
-            script.src = "appointment.js";
-            document.body.appendChild(script);
-        });
+        // Dynamically load appointment.js after HTML is inserted
+        const script = document.createElement("script");
+        script.src = "appointment.js";
+        script.onload = () => initDashboardAppointments();
+        dashboardSection.appendChild(script);
+      });
+  } else {
+    if (typeof initDashboardAppointments === "function") initDashboardAppointments();
+  }
 });
 
 // Calendar tab click
 navItems[0].addEventListener("click", () => {
-    dashboardSection.style.display = "none";
-    calendarSection.style.display = "block";
-    navItems[0].classList.add("active");
-    navItems[1].classList.remove("active");
+  dashboardSection.style.display = "none";
+  calendarSection.style.display = "block";
+  navItems[0].classList.add("active");
+  navItems[1].classList.remove("active");
 });
 
 // ====== INITIAL ======
